@@ -53,6 +53,7 @@ function checkWinner(playerChoice, computerChoice)
     }
 }
 
+
 /**
  * Prints the outcome of a round to the console.
  * 
