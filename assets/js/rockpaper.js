@@ -6,8 +6,21 @@
 function getComputerChoice()
 {
     const items = ['ROCK', 'PAPER', 'SCISSORS'];
-    let i = Math.floor(Math.random() * 4);
+    let i = Math.floor(Math.random() * 3);
+    console.log(`random pick was ${i}`);
     return items[i];
+}
+
+// Just a quick test function
+function computerChoiceTest(numTests)
+{
+    let computerPick;
+    for(let i = 0; i < numTests; i++)
+    {
+        computerPick = getComputerChoice();
+        console.log("Computer picked: " + computerPick);
+    }
+    console.log(numTests + " tests concluded.");
 }
 
 
@@ -51,6 +64,10 @@ function checkWinner(playerChoice, computerChoice)
         if (computerChoice === 'SCISSORS')
             result = 0;
     }
+    else
+        result = -2; // ERROR CONDITION! WTF INPUT DID WE JUST RECEIVE???
+
+    return result;
 }
 
 
@@ -59,7 +76,7 @@ function checkWinner(playerChoice, computerChoice)
  * 
  * @param {Number} winner - a number representing the outcome of the round
  */
-function printWinner(winner)
+function printWinner(winner, playerChoice, computerChoice)
 {
     switch(winner)
     {
@@ -71,12 +88,37 @@ function printWinner(winner)
             break;
         case 1:
             console.log(`You win! ${playerChoice} beats ${computerChoice}`);
+            break;
+        default:
+            console.log("Who wins? Nobody knows!");
     }
 }
 
 function playRound()
 {
+    // TODO: check player choice for bad input
     const playerChoice = prompt("Select rock, paper, or scissors:").toUpperCase();
     const computerChoice = getComputerChoice();
-    printWinner(checkWinner(playerChoice, computerChoice));
+    const winner = checkWinner(playerChoice, computerChoice);
+    printWinner(winner, playerChoice, computerChoice);
+    return winner;
+}
+
+function game()
+{
+    let win = 0, loss = 0;
+    let result;
+    for (let i = 0; i < 5; i++) {
+        result = playRound();
+        if (result === -1) ++loss;
+        if (result === 1) ++win;
+        if (win === 3 || loss === 3)
+            break;
+    }
+    if (win > loss)
+        console.log("You win the game!");
+    else if (loss > win)
+        console.log("Womp womp you lose!");
+    else if (loss === win)
+        console.log("Tis but a tie!");
 }
