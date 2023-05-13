@@ -33,6 +33,8 @@ function computerChoiceTest(numTests)
  * @returns {Number}:                -1: Human player loses   :-(
  *                                    0: It's a tie!
  *                                    1: Human player wins    :-)
+ * 
+ *                                   -2: unknown input combination
  */
 function checkWinner(playerChoice, computerChoice)
 {
