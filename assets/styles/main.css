@@ -1,0 +1,30 @@
+/*---- RESET CSS DEFAULTS ----*/
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    overflow-wrap: break-word;
+}
+
+html, body {
+  min-height: 100vh;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+/*---- END CSS DEFAULTS ----*/
